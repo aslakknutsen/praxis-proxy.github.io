@@ -4,6 +4,7 @@ description = "Find release-specific guidance for routing, TLS, security, health
 type = "guides"
 weight = 40
 body_class = "guides-page"
+outputs = ["HTML", "RSS", "markdown"]
 +++
 
 Praxis routes HTTP requests through configurable filters and can forward opaque TCP connections with TCP listeners. These guides apply to the selected Praxis documentation release. A configured feature is not automatically enabled: review your YAML and the release's build features.

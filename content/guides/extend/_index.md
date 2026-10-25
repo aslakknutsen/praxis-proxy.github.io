@@ -4,6 +4,7 @@ description = "Use Rust when you need custom filters, protocols, or changes to t
 type = "guides"
 weight = 50
 body_class = "guides-page"
+outputs = ["HTML", "RSS", "markdown"]
 +++
 
 Running Praxis and configuring its built-in behavior do not require Rust. This path is for developers who need behavior that the selected binary does not provide, want to write an extension, or plan to contribute to a project.
