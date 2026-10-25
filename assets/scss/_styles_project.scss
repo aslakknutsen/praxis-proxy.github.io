@@ -534,6 +534,8 @@ body.praxis-blog .td-outer { padding-inline: 0; }
   .examples-sidebar__example-group > details > summary { min-height: 44px; padding-block: 0.65rem; }
 }
 .docs-version-fallback { margin: 0.8rem 0; padding: 0.65rem 0.75rem; border-left: 3px solid var(--praxis-accent); background: var(--praxis-panel); color: var(--praxis-muted); font-size: 0.86rem; }
+.docs-page-formats { margin: 0.75rem 0 0; font-size: 0.85rem; }
+.docs-page-formats a { color: var(--praxis-muted); }
 .docs-contribution-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; margin: 1.5rem 0; padding: 0.75rem 0; border-top: 1px solid var(--praxis-border); border-bottom: 1px solid var(--praxis-border); font-size: 0.85rem; }
 .docs-contribution-meta a { color: var(--praxis-muted); }
 .docs-source-revision { min-width: 0; overflow-wrap: anywhere; color: var(--praxis-muted); font-family: 'IBM Plex Mono', monospace; font-size: 0.8125rem; }

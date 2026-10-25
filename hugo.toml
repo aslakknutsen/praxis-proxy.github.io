@@ -1,6 +1,14 @@
 baseURL = "https://praxis.fast/"
 title = "Praxis"
 enableGitInfo = false
+enableRobotsTXT = true
+
+# Agent-facing outputs. LLMS publishes /llms.txt from layouts/home.llms.txt;
+# markdown publishes an index.md beside each page's index.html. Section output
+# stays HTML-only until landing shortcodes have Markdown variants.
+[outputs]
+home = ["HTML", "RSS", "LLMS"]
+page = ["HTML", "markdown"]
 
 [module]
   proxy = "direct"

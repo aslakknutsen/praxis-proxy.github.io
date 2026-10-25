@@ -29,7 +29,7 @@ def main():
         assert urlsplit(target).scheme in ('', 'https'), target
         metadata = {
             'title': 'Moved documentation', 'url': source, 'layout': 'legacy-redirect',
-            'redirect_target': target, 'exclude_search': True,
+            'redirect_target': target, 'exclude_search': True, 'outputs': ['HTML'],
         }
         frontmatter = '\n'.join(f'{key} = {json.dumps(value)}' for key, value in metadata.items())
         (destination / f'legacy-redirect-{number}.md').write_text('+++\n' + frontmatter + '\n+++\n')

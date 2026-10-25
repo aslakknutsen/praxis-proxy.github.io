@@ -64,7 +64,8 @@ check:
 	$(CONTAINER_MAKE) check-in-container
 
 # lychee reads rendered links from the built files; verbatim scanning also treats
-# URL-looking code examples as links. Rendered HTML href/src attributes are checked.
+# URL-looking code examples as links. Rendered HTML href/src attributes, Markdown
+# links, and the llms.txt manifest are checked.
 # The first --remap checks the site's own absolute URLs (canonical,
 # feeds, sitemap) against the build instead of skipping them as external; the
 # second, for a base URL with a path (LINK_PREFIX, e.g. /docs), maps root-relative
@@ -77,7 +78,8 @@ check-in-container: build-in-container
 		--remap "^$(LINK_BASEURL) file://$(abspath $(HUGO_DESTINATION))/" \
 		$(if $(LINK_PREFIX),--remap "^file://$(abspath $(HUGO_DESTINATION))$(LINK_PREFIX)/ file://$(abspath $(HUGO_DESTINATION))/") \
 		--no-progress --format compact \
-		"$(HUGO_DESTINATION)/**/*.html" "$(HUGO_DESTINATION)/**/*.css" "$(HUGO_DESTINATION)/**/*.xml"
+		"$(HUGO_DESTINATION)/**/*.html" "$(HUGO_DESTINATION)/**/*.css" "$(HUGO_DESTINATION)/**/*.xml" \
+		"$(HUGO_DESTINATION)/**/*.md" "$(HUGO_DESTINATION)/llms.txt"
 
 check-doc-versions:
 	python3 tools/docs.py check-release-versions

@@ -1,0 +1,7 @@
+{{/* Return the absolute URL for an agent-facing link: the page's Markdown
+  output when it publishes one, otherwise the HTML page. */ -}}
+{{- $url := .Permalink -}}
+{{- with .OutputFormats.Get "markdown" -}}
+  {{- $url = .Permalink -}}
+{{- end -}}
+{{- return $url -}}

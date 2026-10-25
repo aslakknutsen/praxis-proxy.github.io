@@ -1,0 +1,56 @@
+{{- $products := hugo.Data.docs_build_versions.products -}}
+# {{ .Site.Title }}
+
+{{ with (strings.TrimSpace .Site.Params.description) }}> {{ . }}
+{{ end }}
+Praxis projects are documented and released independently. This manifest links
+each project's current default release. Archived releases and the unreleased
+development channel remain available from each page's version selector; they
+are not listed here, and matching version numbers across projects do not imply
+tested compatibility.
+
+Every link points to a Markdown version when one exists, otherwise to the HTML
+page. The full URL inventory is in [sitemap.xml]({{ "sitemap.xml" | absURL }}).
+
+## Start here
+
+{{ range $path := slice "/guides/install" "/guides/first-proxy" "/guides/use-filters" "/guides/operate" "/guides/extend" -}}
+{{- with site.GetPage $path -}}
+{{ partial "llms-link-line.html" . -}}
+{{ end -}}
+{{- end }}
+{{ range $id := slice "praxis" "ai" "policy" "grid" -}}
+{{- $product := index $products $id -}}
+{{- $version := $product.default -}}
+{{- $release := index (where $product.versions "slug" $version) 0 -}}
+{{- $overview := site.GetPage (printf "/%s/%s" $id $version) -}}
+{{- $overviewURL := "" -}}
+{{- with $overview -}}{{- $overviewURL = .RelPermalink -}}{{- end -}}
+## {{ $product.name }} — {{ $release.label }}
+
+{{ with $product.description }}{{ . }}
+
+{{ end -}}
+{{- with $overview -}}
+{{ partial "llms-link-line.html" . -}}
+{{- end -}}
+{{- range $path := $product.required -}}
+{{- $matches := where (where (where site.Pages "Params.product" $id) "Params.version" $version) "Params.source_path" $path -}}
+{{- if $matches -}}
+{{- with index $matches 0 -}}
+{{- if ne .RelPermalink $overviewURL -}}
+{{ partial "llms-link-line.html" . -}}
+{{- end -}}
+{{- end -}}
+{{- else -}}
+{{- errorf "llms.txt: missing required page %q for %s %s" $path $id $version -}}
+{{- end -}}
+{{- end -}}
+{{ printf "\n" -}}
+{{ end -}}
+## Examples and community
+
+{{ with site.GetPage "/examples" }}{{ partial "llms-link-line.html" . }}{{ end -}}
+{{ with site.GetPage "/docs" }}{{ partial "llms-link-line.html" . }}{{ end -}}
+{{ with site.GetPage "/blog" }}{{ partial "llms-link-line.html" . }}{{ end -}}
+{{ with site.GetPage "/community" }}{{ partial "llms-link-line.html" . }}{{ end -}}

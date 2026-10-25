@@ -1,3 +1,8 @@
+{{- with .AlternativeOutputFormats.Get "markdown" -}}
+<nav class="docs-page-formats" aria-label="Page formats">
+  <a href="{{ .RelPermalink }}" type="{{ .MediaType.Type }}"><i class="fa-brands fa-markdown" aria-hidden="true"></i> View Markdown</a>
+</nav>
+{{- end -}}
 {{- if not .Params.source_commit -}}
   {{ partial "docs-contribution-meta.html" . }}
 {{- end -}}

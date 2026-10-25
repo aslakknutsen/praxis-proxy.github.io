@@ -1,0 +1,6 @@
+{{/* Return one llms.txt link line, newline-terminated, for a page. */ -}}
+{{- $line := printf "- [%s](%s)" .Title (partial "llms-page-url.html" .) -}}
+{{- with .Description -}}
+  {{- $line = printf "%s: %s" $line (. | strings.TrimSpace | replaceRE `\s+` " ") -}}
+{{- end -}}
+{{- return (printf "%s\n" $line) -}}

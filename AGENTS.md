@@ -28,6 +28,12 @@ ownership decisions.
   `assets/scss/_variables_project.scss`. Read the [Docsy look and feel
   guidance](https://www.docsy.dev/docs/content/lookandfeel/) before changing
   theme presentation.
+- Agent-facing output is generated, not authored. `[outputs]` in `hugo.toml`
+  publishes `/llms.txt` and an `index.md` beside each regular page; the
+  manifest is curated in `layouts/home.llms.txt` and links default releases
+  only. Add a `layouts/_shortcodes/<name>.md` text equivalent whenever a
+  shortcode can appear on a Markdown-publishing page, and keep paired HTML and
+  Markdown variants (notably `flow-walkthrough`) in sync.
 - `data/docs_versions.json` independently selects each project's releases
   and default. Every Markdown file under a project's `content_root` is
   published automatically; list a path (or a `dir/**` subtree) in that
